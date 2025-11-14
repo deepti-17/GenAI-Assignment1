@@ -1,6 +1,7 @@
 # GenAI-Assignment1: Pre-train a Small Language Model from Scratch
 
-Model Configuration :
+**Model Configuration :**
+
 Architecture: BERT-style Masked Language Model (MLM)
 
 Number of Transformer Layers: 3
@@ -25,7 +26,8 @@ Train split: 18357 lines after removing blank lines
 
 Validation split: 1901 lines after cleaning
 
-Data Cleaning Performed:
+**Data Cleaning Performed:**
+
 Removed empty / whitespace-only lines
 Used raw text as-is (no lowercasing needed due to tokenizer)
 
@@ -35,7 +37,8 @@ Block Size for Training: 128 tokens
 
 Dynamic Masking Probability: 15% (via DataCollatorForLanguageModeling)
 
-Training Setup: 
+**Training Setup:**
+
 Objective: Masked Language Modeling (MLM)
 Epochs: 3
 
@@ -53,7 +56,9 @@ Gradient Clipping: Max norm = 1.0
 Hardware: Google Colab GPU (CUDA)
 
 A short fine-tuning step was also performed on bert-base-uncased for better sample outputs, using LR=5e-5 and 4 epochs.
-Training Results:
+
+**Training Results:**
+
 Final Training Loss: ~6.43
 
 Final Validation Loss: ~6.48
@@ -62,7 +67,8 @@ Perplexity: ~657
 
 Loss Trend: Training and validation losses decreased steadily across epochs 
 
-Observations:
+**Observations:**
+
 The small-from-scratch model showed consistent improvement across epochs, with both training and validation losses decreasing smoothly, indicating that the architecture and training setup were stable and effective.
 
 Despite being a compact model, it successfully learned core language structure, sentence flow, and common word patterns from the WikiText-2 dataset.
@@ -70,7 +76,9 @@ Despite being a compact model, it successfully learned core language structure, 
 The fine-tuned bert-base-uncased model demonstrated strong contextual understanding, producing accurate masked-token predictions, confirming that the training pipeline was correctly implemented.
 
 The overall workflow—including dataset preparation, dynamic masking, batching, and optimization—performed as expected and showed that the model could adapt to the MLM objective.
-Challenges:
+
+**Challenges:**
+
 Installing the fast tokenizer failed in Colab due to Rust wheel build issues; switched to use_fast=False.
 
 The HuggingFace Trainer API could not be used because the Colab environment had an older transformers version; training loop was reimplemented manually in pure PyTorch.
